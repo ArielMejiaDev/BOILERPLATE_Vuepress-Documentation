@@ -1,0 +1,49 @@
+mkdir site
+cd site
+touch package.json
+nano package.json 
+    -write:  
+    {
+        "scripts": {
+            "docs:dev": "vuepress dev docs",
+            "docs:build": "vuepress build docs"
+        }
+    }
+mkdir docs
+cd docs
+touch README.md 
+nano README.md 
+    -write:
+-- # first page
+mkdir .vuepress 
+cd .vuepress 
+touch config.js 
+nano config.js 
+    -write:
+    module.exports = {
+    // base: '/repoName/', 
+    title: 'Package Documentation',
+    themeConfig: {
+        //...
+    }
+cd ../../
+pwd should show: site root path 
+vuepress dev docs 
+edit all site files and config.js 
+to production
+cd docs/.vuepress
+nano config.js 
+    enable "base" json key and add github repo name 
+cd ../../ 
+pwd should show: root site path
+vuepress build docs 
+cd docs/.vuepress/dist 
+git init
+git add .
+git commit -m "wip"
+git remote add origin github repo 
+git push -u origin master
+Go to github repo, in settings section go to github pages, and select branch master or whatever where you push code 
+then go to the url provided by github and wait a few minutes reload and the site is available
+if the site does not show after 15 minutes add a change, build the code again, go to dist folder and push the change then go to 
+github page, after a few minutes the site would be available
